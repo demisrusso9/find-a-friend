@@ -1,4 +1,7 @@
-import { OrganizationDTO } from '@/types/organization.type'
+import {
+	OrganizationDTO,
+	OrganizationResponseDTO
+} from '@/types/organization.type'
 import bcrypt from 'bcrypt'
 import { OrganizationAlreadyExistsError } from '../errors/organization-already-exists.error'
 import { OrganizationRepository } from '../repositories/contracts/organization.repository'
@@ -22,8 +25,10 @@ export class RegisterOrganizationService {
 			}
 		)
 
+		const { password: _, ...organizationData } = organization
+
 		return {
-			organization
+			organization: organizationData as OrganizationResponseDTO
 		}
 	}
 }

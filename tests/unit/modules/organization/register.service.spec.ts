@@ -24,12 +24,11 @@ describe('Register Organization', async () => {
 	})
 
 	it('should register an organization', async () => {
-		await sut.execute(organizationData)
+		const result = await sut.execute(organizationData)
 
 		expect(organizationRepository.organizations).toHaveLength(1)
-		expect(organizationRepository.organizations[0].email).toBe(
-			'test@example.com'
-		)
+		expect(result.organization).not.toHaveProperty('password')
+		expect(result.organization.email).toBe('test@example.com')
 	})
 
 	it('should hash the password before saving', async () => {

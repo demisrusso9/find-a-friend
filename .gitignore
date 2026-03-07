@@ -4,3 +4,5 @@ dist
 .github/agents
 .env
 coverage
+.stryker-tmp
+reports/stryker-incremental.json

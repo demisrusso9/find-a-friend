@@ -1,5 +1,4 @@
 import { OrganizationDTO } from '@/types/organization.type'
-import { OrganizationAlreadyExistsError } from '../../../src/modules/organization/errors/organization-already-exists.error'
 import { OrganizationRepository } from '../../../src/modules/organization/repositories/contracts/organization.repository'
 
 export class InMemoryOrganizationRepository implements OrganizationRepository {
@@ -8,12 +7,6 @@ export class InMemoryOrganizationRepository implements OrganizationRepository {
 	async registerOrganization(
 		params: OrganizationDTO
 	): Promise<OrganizationDTO> {
-		const existing = await this.findOrganizationByEmail(params.email)
-
-		if (existing) {
-			throw new OrganizationAlreadyExistsError()
-		}
-
 		this.organizations.push(params)
 
 		return params
