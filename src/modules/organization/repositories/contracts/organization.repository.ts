@@ -1,6 +1,15 @@
-import { OrganizationDTO } from '@/types/organization.type'
+import {
+	OrganizationDTO,
+	OrganizationResponseDTO
+} from '../../schemas/organization.schema'
+import { RegisterDTO } from '../../schemas/register.schema'
 
 export interface OrganizationRepository {
-	registerOrganization(params: OrganizationDTO): Promise<OrganizationDTO>
-	findOrganizationByEmail(email: string): Promise<OrganizationDTO | null>
+	registerOrganization(params: RegisterDTO): Promise<OrganizationResponseDTO>
+	findOrganizationByEmail(
+		email: string
+	): Promise<OrganizationResponseDTO | null>
+	findOrganizationByEmailWithCredentials(
+		email: string
+	): Promise<OrganizationDTO | null>
 }

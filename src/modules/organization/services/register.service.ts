@@ -1,15 +1,12 @@
-import {
-	OrganizationDTO,
-	OrganizationResponseDTO
-} from '@/types/organization.type'
 import bcrypt from 'bcrypt'
-import { OrganizationAlreadyExistsError } from '../errors/organization-already-exists.error'
 import { OrganizationRepository } from '../repositories/contracts/organization.repository'
+import { OrganizationAlreadyExistsError } from '../repositories/errors/organization-already-exists.error'
+import { RegisterDTO } from '../schemas/register.schema'
 
 export class RegisterOrganizationService {
 	constructor(private organizationRepository: OrganizationRepository) {}
 
-	async execute(params: OrganizationDTO) {
+	async execute(params: RegisterDTO) {
 		const checkIfExists =
 			await this.organizationRepository.findOrganizationByEmail(params.email)
 
@@ -25,10 +22,8 @@ export class RegisterOrganizationService {
 			}
 		)
 
-		const { password: _, ...organizationData } = organization
-
 		return {
-			organization: organizationData as OrganizationResponseDTO
+			organization
 		}
 	}
 }

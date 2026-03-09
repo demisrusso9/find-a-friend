@@ -1,6 +1,6 @@
-import { OrganizationAlreadyExistsError } from '@/modules/organization/errors/organization-already-exists.error'
-import { RegisterOrganizationService } from '@/modules/organization/services/register.services'
-import { OrganizationDTO } from '@/types/organization.type'
+import { OrganizationAlreadyExistsError } from '@/modules/organization/repositories/errors/organization-already-exists.error'
+import { RegisterDTO } from '@/modules/organization/schemas/register.schema'
+import { RegisterOrganizationService } from '@/modules/organization/services/register.service'
 import { InMemoryOrganizationRepository } from '@tests/unit/repositories/in-memory-organization.repository'
 import bcrypt from 'bcrypt'
 import { beforeEach, describe, expect, it } from 'vitest'
@@ -8,8 +8,8 @@ import { beforeEach, describe, expect, it } from 'vitest'
 let organizationRepository: InMemoryOrganizationRepository
 let sut: RegisterOrganizationService
 
-describe('Register Organization', async () => {
-	const organizationData: OrganizationDTO = {
+describe('Register Organization', () => {
+	const organizationData: RegisterDTO = {
 		name: 'Test Organization',
 		email: 'test@example.com',
 		password: 'password123',
@@ -27,6 +27,9 @@ describe('Register Organization', async () => {
 		const result = await sut.execute(organizationData)
 
 		expect(organizationRepository.organizations).toHaveLength(1)
+		expect(organizationRepository.organizations[0].id).toBeTruthy()
+		expect(organizationRepository.organizations[0].createdAt).toBeTruthy()
+
 		expect(result.organization).not.toHaveProperty('password')
 		expect(result.organization.email).toBe('test@example.com')
 	})
