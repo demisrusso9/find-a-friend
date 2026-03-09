@@ -31,7 +31,7 @@ model Pet {
 }
 
 enum Size {
-  SMALL
-  MEDIUM
-  LARGE
+  small
+  medium
+  large
 }
