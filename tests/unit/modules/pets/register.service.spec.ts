@@ -10,7 +10,8 @@ describe('Register Pet', () => {
 	const petData: RegisterPetDTO = {
 		name: 'pet name1',
 		age: 5,
-		size: 'medium'
+		size: 'medium',
+		breed: 'breed1'
 	}
 
 	beforeEach(() => {

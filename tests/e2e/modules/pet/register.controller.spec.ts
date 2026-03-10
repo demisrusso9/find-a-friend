@@ -22,7 +22,8 @@ describe('Register Controller', () => {
 			.send({
 				name: 'pet name1',
 				age: 5,
-				size: 'medium'
+				size: 'medium',
+				breed: 'breed1'
 			})
 
 		expect(response.status).toEqual(201)
