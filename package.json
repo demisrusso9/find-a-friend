@@ -8,7 +8,7 @@
     "dev": "tsx watch src/server.ts",
     "test": "vitest run --project unit",
     "test:coverage": "vitest run --project unit --coverage",
-    "test:e2e": "vitest run --project e2e",
+    "test:e2e": "prisma generate && vitest run --project e2e",
     "test:mutation": "stryker run"
   },
   "keywords": [],
