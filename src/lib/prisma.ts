@@ -1,7 +1,7 @@
 import { env } from '@/envs/envs'
 import { PrismaPg } from '@prisma/adapter-pg'
+import { PrismaClient } from '@prisma/generated/client'
 import 'dotenv/config'
-import { PrismaClient } from '../../prisma/generated/client'
 
 function createPrismaClient(connectionString: string) {
 	const url = new URL(connectionString)

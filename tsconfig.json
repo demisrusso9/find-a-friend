@@ -11,7 +11,7 @@
         "./src/*"
       ],
       "@prisma/generated/*": [
-        "./src/prisma/generated/*"
+        "./prisma/generated/*"
       ],
       "@tests/*": [
         "./tests/*"
