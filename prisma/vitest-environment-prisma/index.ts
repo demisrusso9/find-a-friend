@@ -22,7 +22,7 @@ export default <Environment>{
 
 		process.env.DATABASE_URL = `${connectionString}?schema=${schema}`
 
-		execSync('npx prisma db push')
+		execSync('npx prisma migrate deploy')
 
 		const adapter = new PrismaPg({ connectionString }, { schema })
 		const prisma = new PrismaClient({ adapter })
@@ -33,7 +33,6 @@ export default <Environment>{
 					`DROP SCHEMA IF EXISTS "${schema}" CASCADE`
 				)
 				await prisma.$disconnect()
-				process.env.DATABASE_URL = originalDatabaseUrl
 			}
 		}
 	}
