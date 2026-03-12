@@ -14,6 +14,7 @@ export default <Environment>{
 				'DATABASE_URL environment variable is not set for testing'
 			)
 		}
+		const originalDatabaseUrl = process.env.DATABASE_URL
 
 		const schema = randomUUID()
 		const url = new URL(process.env.DATABASE_URL)
@@ -32,6 +33,7 @@ export default <Environment>{
 					`DROP SCHEMA IF EXISTS "${schema}" CASCADE`
 				)
 				await prisma.$disconnect()
+				process.env.DATABASE_URL = originalDatabaseUrl
 			}
 		}
 	}
