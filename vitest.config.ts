@@ -3,7 +3,7 @@ import { defineConfig } from 'vitest/config'
 
 const aliases = {
 	'@': resolve(__dirname, './src'),
-	'@prisma/generated': resolve(__dirname, '/prisma/generated'),
+	'@prisma/generated': resolve(__dirname, './prisma/generated'),
 	'@tests': resolve(__dirname, './tests')
 }
 
