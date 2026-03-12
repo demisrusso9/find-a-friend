@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt'
-import { OrganizationRepository } from '../repositories/contracts/organization.repository'
-import { InvalidCredentialsError } from '../repositories/errors/invalid-credentials.error'
-import { SessionDTO } from '../schemas/session.schema'
+import { OrganizationRepository } from '@/modules/organization/repositories/contracts/organization.repository'
+import { InvalidCredentialsError } from '@/modules/organization/repositories/errors/invalid-credentials.error'
+import { SessionDTO } from '@/modules/organization/schemas/session.schema'
 
 export class SessionOrganizationService {
 	constructor(private organizationRepository: OrganizationRepository) {}

@@ -1,8 +1,8 @@
 import { prisma } from '@/lib/prisma'
 import { Prisma } from '../../../../prisma/generated/client'
-import { FilterPetsDTO, FilterPetsResponseDTO } from '../schemas/filters.schema'
-import { PetDTO } from '../schemas/pets.schema'
-import { RegisterPetDTO } from '../schemas/register.schema'
+import { FilterPetsDTO, FilterPetsResponseDTO } from '@/modules/pets/schemas/filters.schema'
+import { PetDTO } from '@/modules/pets/schemas/pets.schema'
+import { RegisterPetDTO } from '@/modules/pets/schemas/register.schema'
 import { PetsRepository } from './contracts/pets.repository'
 
 type PetWithOrganizationRaw = {

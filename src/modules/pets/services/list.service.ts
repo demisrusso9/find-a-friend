@@ -1,5 +1,5 @@
-import { PetsRepository } from '../repositories/contracts/pets.repository'
-import { FilterPetsDTO } from '../schemas/filters.schema'
+import { PetsRepository } from '@/modules/pets/repositories/contracts/pets.repository'
+import { FilterPetsDTO } from '@/modules/pets/schemas/filters.schema'
 
 export class ListPetsService {
 	constructor(private petsRepository: PetsRepository) {}

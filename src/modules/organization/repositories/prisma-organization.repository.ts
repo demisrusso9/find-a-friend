@@ -1,5 +1,5 @@
 import { prisma } from '@/lib/prisma'
-import { RegisterDTO } from '../schemas/register.schema'
+import { RegisterDTO } from '@/modules/organization/schemas/register.schema'
 import { OrganizationRepository } from './contracts/organization.repository'
 
 export class PrismaOrganizationRepository implements OrganizationRepository {

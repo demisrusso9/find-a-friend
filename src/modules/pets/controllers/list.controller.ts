@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
-import { makeListPetsService } from '../factories/make-list.service'
-import { filterPetsSchema } from '../schemas/filters.schema'
+import { makeListPetsService } from '@/modules/pets/factories/make-list.service'
+import { filterPetsSchema } from '@/modules/pets/schemas/filters.schema'
 
 export async function listController(
 	request: FastifyRequest,

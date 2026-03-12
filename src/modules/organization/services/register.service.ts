@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt'
-import { OrganizationRepository } from '../repositories/contracts/organization.repository'
-import { OrganizationAlreadyExistsError } from '../repositories/errors/organization-already-exists.error'
-import { RegisterDTO } from '../schemas/register.schema'
+import { OrganizationRepository } from '@/modules/organization/repositories/contracts/organization.repository'
+import { OrganizationAlreadyExistsError } from '@/modules/organization/repositories/errors/organization-already-exists.error'
+import { RegisterDTO } from '@/modules/organization/schemas/register.schema'
 
 export class RegisterOrganizationService {
 	constructor(private organizationRepository: OrganizationRepository) {}

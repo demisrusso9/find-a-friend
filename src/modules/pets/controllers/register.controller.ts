@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
-import { makeRegisterPetService } from '../factories/make-register.service'
-import { registerPetSchema } from '../schemas/register.schema'
+import { makeRegisterPetService } from '@/modules/pets/factories/make-register.service'
+import { registerPetSchema } from '@/modules/pets/schemas/register.schema'
 
 export async function registerController(
 	request: FastifyRequest,

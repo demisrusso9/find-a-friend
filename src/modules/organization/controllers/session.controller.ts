@@ -1,8 +1,8 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
-import { makeSessionService } from '../factories/make-session.service'
-import { InvalidCredentialsError } from '../repositories/errors/invalid-credentials.error'
-import { OrganizationAlreadyExistsError } from '../repositories/errors/organization-already-exists.error'
-import { sessionSchema } from '../schemas/session.schema'
+import { makeSessionService } from '@/modules/organization/factories/make-session.service'
+import { InvalidCredentialsError } from '@/modules/organization/repositories/errors/invalid-credentials.error'
+import { OrganizationAlreadyExistsError } from '@/modules/organization/repositories/errors/organization-already-exists.error'
+import { sessionSchema } from '@/modules/organization/schemas/session.schema'
 
 export async function sessionController(
 	request: FastifyRequest,

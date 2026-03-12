@@ -1,4 +1,4 @@
-import { PetsRepository } from '../repositories/contracts/pets.repository'
+import { PetsRepository } from '@/modules/pets/repositories/contracts/pets.repository'
 import { PetNotFoundError } from './errors/pet-not-found.error'
 
 export class GetByIdPetsService {

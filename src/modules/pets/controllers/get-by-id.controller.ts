@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
-import { makeGetByIdPetsService } from '../factories/make-get-by-id.service'
-import { getByIdPetsSchema } from '../schemas/get-by-id.schema'
-import { PetNotFoundError } from '../services/errors/pet-not-found.error'
+import { makeGetByIdPetsService } from '@/modules/pets/factories/make-get-by-id.service'
+import { getByIdPetsSchema } from '@/modules/pets/schemas/get-by-id.schema'
+import { PetNotFoundError } from '@/modules/pets/services/errors/pet-not-found.error'
 
 export async function getByIdController(
 	request: FastifyRequest,

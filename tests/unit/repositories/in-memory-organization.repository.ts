@@ -4,7 +4,7 @@ import {
 } from '@/modules/organization/schemas/organization.schema'
 import { RegisterDTO } from '@/modules/organization/schemas/register.schema'
 import { randomUUID } from 'node:crypto'
-import { OrganizationRepository } from '../../../src/modules/organization/repositories/contracts/organization.repository'
+import { OrganizationRepository } from '@/modules/organization/repositories/contracts/organization.repository'
 
 export class InMemoryOrganizationRepository implements OrganizationRepository {
 	public organizations: OrganizationDTO[] = []

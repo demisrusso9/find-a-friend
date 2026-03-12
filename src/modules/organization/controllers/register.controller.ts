@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
-import { makeRegisterService } from '../factories/make-register.service'
-import { OrganizationAlreadyExistsError } from '../repositories/errors/organization-already-exists.error'
-import { registerSchema } from '../schemas/register.schema'
+import { makeRegisterService } from '@/modules/organization/factories/make-register.service'
+import { OrganizationAlreadyExistsError } from '@/modules/organization/repositories/errors/organization-already-exists.error'
+import { registerSchema } from '@/modules/organization/schemas/register.schema'
 
 export async function registerController(
 	request: FastifyRequest,

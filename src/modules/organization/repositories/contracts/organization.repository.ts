@@ -1,8 +1,8 @@
 import {
 	OrganizationDTO,
 	OrganizationResponseDTO
-} from '../../schemas/organization.schema'
-import { RegisterDTO } from '../../schemas/register.schema'
+} from '@/modules/organization/schemas/organization.schema'
+import { RegisterDTO } from '@/modules/organization/schemas/register.schema'
 
 export interface OrganizationRepository {
 	registerOrganization(params: RegisterDTO): Promise<OrganizationResponseDTO>

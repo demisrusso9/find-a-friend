@@ -1,5 +1,5 @@
-import { PrismaPetsRepository } from '../repositories/prisma-pet.repository'
-import { RegisterPetService } from '../services/register.service'
+import { PrismaPetsRepository } from '@/modules/pets/repositories/prisma-pet.repository'
+import { RegisterPetService } from '@/modules/pets/services/register.service'
 
 export function makeRegisterPetService() {
 	const petsRepository = new PrismaPetsRepository()

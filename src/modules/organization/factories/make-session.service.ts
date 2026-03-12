@@ -1,5 +1,5 @@
-import { PrismaOrganizationRepository } from '../repositories/prisma-organization.repository'
-import { SessionOrganizationService } from '../services/session.service'
+import { PrismaOrganizationRepository } from '@/modules/organization/repositories/prisma-organization.repository'
+import { SessionOrganizationService } from '@/modules/organization/services/session.service'
 
 export function makeSessionService() {
 	const organizationRepository = new PrismaOrganizationRepository()
