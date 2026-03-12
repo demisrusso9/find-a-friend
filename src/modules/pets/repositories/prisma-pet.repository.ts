@@ -5,20 +5,7 @@ import {
 } from '@/modules/pets/schemas/filters.schema'
 import { PetDTO } from '@/modules/pets/schemas/pets.schema'
 import { RegisterPetDTO } from '@/modules/pets/schemas/register.schema'
-import { Prisma } from '@prisma/generated/client'
 import { PetsRepository } from './contracts/pets.repository'
-
-type PetWithOrganizationRaw = {
-	id: string
-	name: string
-	age: number
-	breed: string
-	size: string
-	email: string
-	phone: string
-	city: string
-	state: string
-}
 
 export class PrismaPetsRepository implements PetsRepository {
 	async create(
@@ -70,24 +57,34 @@ export class PrismaPetsRepository implements PetsRepository {
 	async findManyByFilters(
 		filters: FilterPetsDTO
 	): Promise<FilterPetsResponseDTO[]> {
-		const conditions = this.getConditions(filters)
-		const where = Prisma.join(conditions, ' AND ')
-
-		const pets = await prisma.$queryRaw<PetWithOrganizationRaw[]>`
-			SELECT
-				p.id,
-				p.name,
-				p.age,
-				p.breed,
-				p.size,
-				o.email,
-				o.phone,
-				o.city,
-				o.state
-			FROM "Pet" p
-			JOIN "Organization" o ON o.id = p."organizationId"
-			WHERE ${where}
-		`
+		const pets = await prisma.pet.findMany({
+			relationLoadStrategy: 'join',
+			select: {
+				id: true,
+				name: true,
+				age: true,
+				breed: true,
+				size: true,
+				organization: {
+					select: {
+						email: true,
+						phone: true,
+						city: true,
+						state: true
+					}
+				}
+			},
+			where: {
+				organization: {
+					city: { contains: filters.city, mode: 'insensitive' }
+				},
+				...(filters.breed && {
+					breed: { contains: filters.breed, mode: 'insensitive' }
+				}),
+				...(filters.age !== undefined && { age: filters.age }),
+				...(filters.size && { size: filters.size })
+			}
+		})
 
 		return pets.map((pet) => ({
 			id: pet.id,
@@ -96,33 +93,11 @@ export class PrismaPetsRepository implements PetsRepository {
 			breed: pet.breed,
 			size: pet.size,
 			contact: {
-				email: pet.email,
-				phone: pet.phone,
-				city: pet.city,
-				state: pet.state
+				email: pet.organization.email,
+				phone: pet.organization.phone,
+				city: pet.organization.city,
+				state: pet.organization.state
 			}
 		}))
-	}
-
-	getConditions(filters: FilterPetsDTO): Prisma.Sql[] {
-		const conditions: Prisma.Sql[] = [
-			Prisma.sql`unaccent(o.city) ILIKE unaccent(${`%${filters.city}%`})`
-		]
-
-		if (filters.breed) {
-			conditions.push(
-				Prisma.sql`unaccent(p.breed) ILIKE unaccent(${`%${filters.breed}%`})`
-			)
-		}
-
-		if (filters.age !== undefined) {
-			conditions.push(Prisma.sql`p.age = ${filters.age}`)
-		}
-
-		if (filters.size) {
-			conditions.push(Prisma.sql`p.size = ${filters.size}::"Size"`)
-		}
-
-		return conditions
 	}
 }
