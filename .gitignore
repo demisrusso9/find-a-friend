@@ -10,7 +10,7 @@ prisma/generated
 
 # Test & Coverage
 coverage
-reports/
+reports
 .stryker-tmp
 
 # Editor / IDE
