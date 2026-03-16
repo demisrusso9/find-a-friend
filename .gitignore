@@ -1,8 +1,17 @@
+# Dependencies
 node_modules
-prisma/generated
+
+# Build
 dist
-.github/agents
+prisma/generated
+
+# Environment
 .env
+
+# Test & Coverage
 coverage
+reports/
 .stryker-tmp
-reports/stryker-incremental.json
+
+# Editor / IDE
+.github/agents
