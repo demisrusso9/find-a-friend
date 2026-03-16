@@ -6,4 +6,6 @@ app
 		port: env.PORT,
 		host: env.HOST
 	})
-	.then(() => console.log(`Listening on ${env.HOST}:${env.PORT}`))
+	.then(() =>
+		console.log(`[${env.NODE_ENV}] Server listening on port ${env.PORT}`)
+	)

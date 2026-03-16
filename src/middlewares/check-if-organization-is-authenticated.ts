@@ -7,6 +7,7 @@ export async function checkIfOrganizationIsAuthenticated(
 	try {
 		await request.jwtVerify()
 	} catch (error) {
+		request.log.warn({ url: request.url }, 'Unauthorized access attempt')
 		return reply.status(401).send({ message: 'Unauthorized' })
 	}
 }

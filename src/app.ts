@@ -7,7 +7,10 @@ import { healthCheckRoutes } from './routes/healthcheck'
 import { organizationRoutes } from './routes/organization'
 import { petsRoutes } from './routes/pets'
 
-export const app = fastify()
+export const app = fastify({
+	logger: true,
+	disableRequestLogging: true
+})
 
 app.register(cookie)
 app.register(jwt, {
@@ -32,6 +35,7 @@ app.setErrorHandler((error, request, reply) => {
 			.send({ message: 'Validation Error', errors: z.prettifyError(error) })
 	}
 
+	request.log.error({ err: error }, 'Unhandled error')
 	return reply.status(500).send({
 		message: 'Internal Server Error'
 	})
